@@ -12,7 +12,6 @@ import (
 	"net/url"
 	"reflect"
 
-	"github.com/danryan/env"
 	"github.com/danryan/hal"
 	"github.com/davecgh/go-spew/spew"
 	"github.com/google/go-querystring/query"
@@ -22,50 +21,33 @@ var _ = spew.Sdump()
 
 // Client is an API client
 type Client struct {
-	client        *http.Client
-	APIKey        string
-	Subdomain     string
-	ServiceAPIKey string
-	ScheduleID    string
-	Room          string
-	BaseURL       *url.URL
+	client    *http.Client
+	Subdomain string
+	APIKey    string
+	BaseURL   *url.URL
 
 	Incidents *IncidentsService
 	Users     *UsersService
 }
 
-type config struct {
-	APIKey        string `env:"key=HAL_PAGERDUTY_API_KEY required"`
-	Subdomain     string `env:"key=HAL_PAGERDUTY_SUBDOMAIN required"`
-	ServiceAPIKey string `env:"key=HAL_PAGERDUTY_SERVICE_API_KEY"` // not sure if required
-	ScheduleID    string `env:"key=HAL_PAGERDUTY_SCHEDULE_ID required"`
-	Room          string `env:"key=HAL_PAGERDUTY_ROOM"`
+// New returns a Client with the default http.Client
+func New(sub, key string) *Client {
+	return NewClient(sub, key, nil)
 }
 
-// Config returns a pointer to an initialized config
-func newConfig() *config {
-	c := &config{}
-	env.MustProcess(c)
-
-	return c
-}
-
-// NewClient returns an API client.
-func NewClient(httpClient *http.Client) *Client {
+// NewClient returns a default cliente
+func NewClient(sub, key string, httpClient *http.Client) *Client {
 	if httpClient == nil {
 		httpClient = http.DefaultClient
 	}
-
-	c := newConfig()
-	u, _ := url.Parse(fmt.Sprintf("https://%s.pagerduty.com/api/v1/", c.Subdomain))
-
+	u, _ := url.Parse(fmt.Sprintf("https://%s.pagerduty.com/api/v1/", sub))
 	client := &Client{
-		client:        httpClient,
-		APIKey:        c.APIKey,
-		Subdomain:     c.Subdomain,
-		ServiceAPIKey: c.ServiceAPIKey,
-		BaseURL:       u,
+		client:    httpClient,
+		APIKey:    key,
+		Subdomain: sub,
+		BaseURL:   u,
 	}
+
 	client.Incidents = &IncidentsService{client: client}
 	client.Users = &UsersService{client: client}
 
