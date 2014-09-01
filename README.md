@@ -2,6 +2,25 @@
 
 PagerDuty API client in Go.
 
+## Getting started
+
+```go
+package main
+
+import "fmt"
+import "github.com/danryan/go-pagerduty/pagerduty"
+
+func main() {
+  subdomain := "PAGERDUTY_SUBDOMAIN"
+  apiKey := "PAGERDUTY_API_KEY"
+  pd := pagerduty.New(subdomain, apiKey)
+
+  incident := pd.Incidents.Get("ABCDEF")
+
+  fmt.Printf("incident %v: status: %v\n", incident.ID, incident.Status)
+}
+```
+
 ## Resources
 
 * [API documentation](http://godoc.org/github.com/danryan/go-pagerduty)
