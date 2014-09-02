@@ -5,7 +5,8 @@ import (
 	"net/http"
 	"reflect"
 	"testing"
-	. "git.int.enstratius.com/infraengprivate/dcm-hal/pagerduty"
+
+	. "github.com/danryan/go-pagerduty/pagerduty"
 )
 
 func TestUser_marshal(t *testing.T) {

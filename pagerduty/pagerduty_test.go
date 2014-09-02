@@ -6,19 +6,19 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"net/url"
-	"os"
 	"reflect"
 	"testing"
-	. "git.int.enstratius.com/infraengprivate/dcm-hal/pagerduty"
+
+	. "github.com/danryan/go-pagerduty/pagerduty"
 )
 
-func init() {
-	os.Setenv("HAL_PAGERDUTY_API_KEY", "foo")
-	os.Setenv("HAL_PAGERDUTY_SUBDOMAIN", "foo")
-	os.Setenv("HAL_PAGERDUTY_SERVICE_API_KEY", "foo")
-	os.Setenv("HAL_PAGERDUTY_SCHEDULE_ID", "foo")
-	os.Setenv("HAL_PAGERDUTY_ROOM", "foo")
-}
+// func init() {
+// 	os.Setenv("HAL_PAGERDUTY_API_KEY", "foo")
+// 	os.Setenv("HAL_PAGERDUTY_SUBDOMAIN", "foo")
+// 	os.Setenv("HAL_PAGERDUTY_SERVICE_API_KEY", "foo")
+// 	os.Setenv("HAL_PAGERDUTY_SCHEDULE_ID", "foo")
+// 	os.Setenv("HAL_PAGERDUTY_ROOM", "foo")
+// }
 
 var (
 	// mux is the HTTP request multiplexer used with the test server.
@@ -35,7 +35,7 @@ func setup() {
 	mux = http.NewServeMux()
 	server = httptest.NewServer(mux)
 
-	client = NewClient(nil)
+	client = NewClient("subdomain", "api_key", nil)
 	url, _ := url.Parse(server.URL)
 	client.BaseURL = url
 }
