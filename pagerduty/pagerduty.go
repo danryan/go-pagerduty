@@ -12,12 +12,8 @@ import (
 	"net/url"
 	"reflect"
 
-	"github.com/danryan/hal"
-	"github.com/davecgh/go-spew/spew"
 	"github.com/google/go-querystring/query"
 )
-
-var _ = spew.Sdump()
 
 // Client is an API client
 type Client struct {
@@ -119,7 +115,6 @@ func (c *Client) Get(path string, output interface{}) (*http.Response, error) {
 func (c *Client) Post(path string, input, output interface{}) (*http.Response, error) {
 	req, err := c.NewRequest("POST", path, input)
 	if err != nil {
-		hal.Logger.Debug(err)
 		return nil, err
 	}
 
