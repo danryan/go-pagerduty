@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# set -e
+
+. $(dirname "$0")/_common
+
+function bundle_install {
+  local bundler_args="--binstubs bin --path vendor/bundle"
+ 
+  export PATH=".bin:$PATH"
+  rm -rf .bundle
+
+  # if [ ! -z "$CI" ]; then
+    banner "Running bundler"
+    bundle install "${bundler_args}" "${@}" >&3 2>&1
+  # fi
+}
+ 
+bundle_install "$@"
