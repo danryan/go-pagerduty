@@ -9,12 +9,24 @@ type IncidentsService struct {
 
 // Incident type
 type Incident struct {
-	ID             string           `json:"id,omitempty"`
-	Status         string           `json:"status,omitempty"`
-	IncidentNumber int              `json:"incident_number,omitempty"`
-	CreatedOn      string           `json:"created_on,omitempty"`
-	Summary        *IncidentSummary `json:"trigger_summary_data,omitempty"`
-	User           *User            `json:"assigned_to_user,omitempty"`
+	ID                    string            `json:"id,omitempty"`
+	IncidentNumber        int               `json:"incident_number,omitempty"`
+	Status                string            `json:"status,omitempty"`
+	CreatedOn             string            `json:"created_on,omitempty"`
+	Summary               *IncidentSummary  `json:"trigger_summary_data,omitempty"`
+	User                  *User             `json:"assigned_to_user,omitempty"`
+	Service               *Service          `json:"service,omitempty"`
+	EscalationPolicy      *EscalationPolicy `json:"escalation_policy,omitempty"`
+	HTMLURL               string            `json:"html_url,omitempty"`
+	IncidentKey           string            `json:"incident_key,omitempty"`
+	TriggerDetailsHTMLURL string            `json:"trigger_details_html_url,omitempty"`
+	TriggerType           string            `json:"trigger_type,omitempty"`
+	LastStatusChangeOn    string            `json:"last_status_change_on,omitempty"`
+	LastStatusChangeBy    *User             `json:"last_status_change_by,omitempty"`
+	NumberOfEscalations   int               `json:"number_of_escalations,omitempty"`
+	ResolvedByUser        *User             `json:"resolved_by_user,omitempty"`
+	AssignedToUser        *User             `json:"assigned_to_user,omitempty"`
+	AssignedTo            []*User           `json:"assigned_to,omitempty"`
 }
 
 // Incidents is a list of incidents

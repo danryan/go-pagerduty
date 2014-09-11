@@ -12,14 +12,6 @@ import (
 	. "github.com/danryan/go-pagerduty/pagerduty"
 )
 
-// func init() {
-// 	os.Setenv("HAL_PAGERDUTY_API_KEY", "foo")
-// 	os.Setenv("HAL_PAGERDUTY_SUBDOMAIN", "foo")
-// 	os.Setenv("HAL_PAGERDUTY_SERVICE_API_KEY", "foo")
-// 	os.Setenv("HAL_PAGERDUTY_SCHEDULE_ID", "foo")
-// 	os.Setenv("HAL_PAGERDUTY_ROOM", "foo")
-// }
-
 var (
 	// mux is the HTTP request multiplexer used with the test server.
 	mux *http.ServeMux
@@ -58,6 +50,9 @@ func testJSONMarshal(t *testing.T, v interface{}, want string) {
 	}
 
 	if w.String() != string(j) {
+		// v2, j2 := new(bytes.Buffer), new(bytes.Buffer)
+		// json.Indent(v2, v.([]byte), "", "  ")
+		// json.Indent(j2, []byte(*w), "", "  ")
 		t.Errorf("json.Marshal(%q) returned %s, want %s", v, j, w)
 	}
 
