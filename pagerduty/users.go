@@ -34,13 +34,13 @@ type UsersOptions struct {
 
 // List returns a list of users
 func (s *UsersService) List(opt *UsersOptions) ([]User, *http.Response, error) {
-	u, err := addOptions("users", opt)
+	uri, err := addOptions("users", opt)
 	if err != nil {
 		return nil, nil, err
 	}
 
 	users := new(Users)
-	res, err := s.client.Get(u, users)
+	res, err := s.client.Get(uri, users)
 	if err != nil {
 		return nil, res, err
 	}
@@ -50,10 +50,10 @@ func (s *UsersService) List(opt *UsersOptions) ([]User, *http.Response, error) {
 
 // Get returns a User by id if found
 func (s *UsersService) Get(id string) (*User, *http.Response, error) {
-	u := fmt.Sprintf("users/%v", id)
+	uri := fmt.Sprintf("users/%v", id)
 
 	user := new(User)
-	res, err := s.client.Get(u, user)
+	res, err := s.client.Get(uri, user)
 	if err != nil {
 		return nil, res, err
 	}
