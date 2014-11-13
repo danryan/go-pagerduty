@@ -7,7 +7,6 @@ import (
 	"testing"
 
 	. "github.com/danryan/go-pagerduty/pagerduty"
-	"github.com/davecgh/go-spew/spew"
 )
 
 func TestIncident_marshal(t *testing.T) {
@@ -88,8 +87,6 @@ func TestIncident_marshal(t *testing.T) {
 func TestIncidentsService_Get(t *testing.T) {
 	setup()
 	defer teardown()
-
-	spew.Dump(server.URL)
 
 	mux.HandleFunc("/users/u", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, "GET")
