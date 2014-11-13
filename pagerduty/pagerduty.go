@@ -31,7 +31,7 @@ func New(sub, key string) *Client {
 	return NewClient(sub, key, nil)
 }
 
-// NewClient returns a default cliente
+// NewClient returns a default client
 func NewClient(sub, key string, httpClient *http.Client) *Client {
 	if httpClient == nil {
 		httpClient = http.DefaultClient
@@ -50,8 +50,8 @@ func NewClient(sub, key string, httpClient *http.Client) *Client {
 	return client
 }
 
-// addOptions adds the parameters in opt as URL query parameters to s.  opt
-// must be a struct whose fields may contain "url" tags.
+// addOptions adds the parameters in opt as URL query parameters to s.
+// opt must be a struct whose fields may contain "url" tags.
 func addOptions(s string, opt interface{}) (string, error) {
 	v := reflect.ValueOf(opt)
 	if v.Kind() == reflect.Ptr && v.IsNil() {
