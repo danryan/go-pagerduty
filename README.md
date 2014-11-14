@@ -26,7 +26,7 @@ func main() {
 ## Resources
 
 * [API documentation](http://godoc.org/github.com/danryan/go-pagerduty)
-* [Bugs, questions, and feature requests](https://github.com/danryan/hal/issues)
+* [Bugs, questions, and feature requests](https://github.com/danryan/go-pagerduty/issues)
 
 ## Is it any good?
 
