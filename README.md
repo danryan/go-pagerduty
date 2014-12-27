@@ -23,6 +23,18 @@ func main() {
 }
 ```
 
+### Build/Install
+
+```
+go install ./...
+```
+
+### Run tests
+
+```
+go test ./...
+```
+
 ## Resources
 
 * [API documentation](http://godoc.org/github.com/danryan/go-pagerduty)
