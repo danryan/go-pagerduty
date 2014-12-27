@@ -17,9 +17,13 @@ func main() {
   apiKey := "PAGERDUTY_API_KEY"
   pd := pagerduty.New(subdomain, apiKey)
 
-  incident := pd.Incidents.Get("ABCDEF")
+  incident, _, err := pd.Incidents.Get("ABCDEF")
 
-  fmt.Printf("incident %v: status: %v\n", incident.ID, incident.Status)
+  if (err != nil) {
+    fmt.Printf("error: %v\n", err)
+  } else {
+    fmt.Printf("incident %v: status: %v\n", incident.ID, incident.Status)
+  }
 }
 ```
 
