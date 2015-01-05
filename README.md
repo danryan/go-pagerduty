@@ -1,5 +1,7 @@
 # go-pagerduty
 
+[![Build Status](https://api.travis-ci.org/danryan/go-pagerduty.png)](http://travis-ci.org/danryan/go-pagerduty)
+
 PagerDuty API client in Go.
 
 Tested on Go versions 1.1-1.4, and tip.
