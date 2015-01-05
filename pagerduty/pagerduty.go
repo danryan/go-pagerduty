@@ -24,6 +24,7 @@ type Client struct {
 
 	Incidents *IncidentsService
 	Users     *UsersService
+	Schedules *SchedulesService
 }
 
 // New returns a Client with the default http.Client
@@ -46,6 +47,7 @@ func NewClient(sub, key string, httpClient *http.Client) *Client {
 
 	client.Incidents = &IncidentsService{client: client}
 	client.Users = &UsersService{client: client}
+	client.Schedules = &SchedulesService{client: client}
 
 	return client
 }

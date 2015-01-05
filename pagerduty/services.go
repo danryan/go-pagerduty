@@ -15,7 +15,7 @@ type Service struct {
 	DeletedAt string `json:"deleted_at,omitempty"`
 }
 
-// Services is a list of users
+// Services is a list of services
 type Services struct {
 	Services []Service
 }
