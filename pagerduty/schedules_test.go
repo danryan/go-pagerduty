@@ -26,12 +26,12 @@ func TestSchedule_marshal(t *testing.T) {
 	want := `{
 		"id": "SCHED1",
 		"name": "Primary",
-                "time_zone": "Pacific Time (US & Canada)",
-                "today": "2014-12-27",
-                "escalation_policies": [{"id": "ESCPOL1", "name": "Escalation Policy 1"}],
-                "schedule_layers": [{"name": "Schedule Layer 1"}],
-                "overrides_subschedule": {"name": "Override Schedule Layer"},
-                "final_schedule": {"name": "Final Schedule Layer"}
+		"time_zone": "Pacific Time (US \u0026 Canada)",
+		"today": "2014-12-27",
+		"escalation_policies": [{"id": "ESCPOL1", "name": "Escalation Policy 1"}],
+		"schedule_layers": [{"name": "Schedule Layer 1"}],
+		"overrides_subschedule": {"name": "Override Schedule Layer"},
+		"final_schedule": {"name": "Final Schedule Layer"}
 	}`
 
 	testJSONMarshal(t, s, want)
