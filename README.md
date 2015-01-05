@@ -2,7 +2,7 @@
 
 PagerDuty API client in Go.
 
-Tested on all Go versions 1.0 and higher.
+Tested on Go versions 1.1-1.4, and tip.
 
 ## Getting started
 
