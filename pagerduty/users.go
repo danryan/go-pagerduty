@@ -12,14 +12,16 @@ type UsersService struct {
 
 // User type
 type User struct {
-	ID        string `json:"id,omitempty"`
-	Name      string `json:"name,omitempty"`
-	Email     string `json:"email,omitempty"`
-	Role      string `json:"role,omitempty"`
-	TimeZone  string `json:"time_zone,omitempty"`
-	Color     string `json:"color,omitempty"`
-	UserURL   string `json:"user_url,omitempty"`
-	AvatarURL string `json:"avatar_url,omitempty"`
+	ID              string   `json:"id,omitempty"`
+	Name            string   `json:"name,omitempty"`
+	Email           string   `json:"email,omitempty"`
+	Role            string   `json:"role,omitempty"`
+	TimeZone        string   `json:"time_zone,omitempty"`
+	Color           string   `json:"color,omitempty"`
+	UserURL         string   `json:"user_url,omitempty"`
+	AvatarURL       string   `json:"avatar_url,omitempty"`
+	InvitationSent  bool 	 `json:"invitation_sent"`
+	MarketingOptOut bool     `json:"marketing_opt_out"`
 }
 
 // Users is a list of users

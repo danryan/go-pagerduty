@@ -44,14 +44,13 @@ type ScheduleLayer struct {
 }
 
 type Schedules struct {
+	Pagination
 	Schedules []*Schedule `json:"schedules,omitempty"`
-	Limit     int         `json:"limit,omitempty"`
-	Offset    int         `json:"offset,omitempty"`
-	Total     int         `json:"total,omitempty"`
 }
 
 // SchedulesOptions provides optional parameters to list requests
 type SchedulesOptions struct {
+	*Pagination
 	Query       string `url:"query,omitempty"`
 	RequesterId string `url:"requester_id,omitempty"`
 }
@@ -90,6 +89,7 @@ func (s *SchedulesService) Get(id string) (*Schedule, *http.Response, error) {
 
 // ScheduleEntriesOptions provides optional parameters to entries requests
 type ScheduleEntriesOptions struct {
+	Pagination
 	Since    string `url:"since,omitempty"`
 	Until    string `url:"until,omitempty"`
 	Overflow bool   `url:"overflow,omitempty"`

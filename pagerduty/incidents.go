@@ -15,8 +15,8 @@ type Incident struct {
 	CreatedOn             string            `json:"created_on,omitempty"`
 	Summary               *IncidentSummary  `json:"trigger_summary_data,omitempty"`
 	User                  *User             `json:"assigned_to_user,omitempty"`
-	Service               *Service          `json:"service,omitempty"`
-	EscalationPolicy      *EscalationPolicy `json:"escalation_policy,omitempty"`
+	SService               *Service          `json:"service,omitempty"` // This is conflicting with the package name on assignment in test. Not sure of the soltuion
+	EEscalationPolicy      *EscalationPolicy `json:"escalation_policy,omitempty"` // This is conflicting with the package name on assignment in test. Not sure of the soltuion
 	HTMLURL               string            `json:"html_url,omitempty"`
 	IncidentKey           string            `json:"incident_key,omitempty"`
 	TriggerDetailsHTMLURL string            `json:"trigger_details_html_url,omitempty"`
