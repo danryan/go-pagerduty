@@ -27,3 +27,7 @@ _testmain.go
 .bundle
 vendor/bundle
 bin/*
+
+# Idea
+.idea
+*.iml
