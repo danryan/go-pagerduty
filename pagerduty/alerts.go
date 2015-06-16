@@ -27,7 +27,7 @@ type AlertsOptions struct {
 	Pagination
 	Type     string `url:"filter[type],omitempty"` // Can be one of SMS, Email, Phone, or Push
 	Timezone string `url:"time_zone,omitempty"`
-	Since    string `url:"since,omitempty"`        // Format 2006-01-02T15:04-07:00
+	Since    string `url:"since,omitempty"`        // Format 2006-01-02T15:04:05-07:00
 	Until    string `url:"until,omitempty"`
 }
 
