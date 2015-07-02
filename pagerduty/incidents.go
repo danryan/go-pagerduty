@@ -55,6 +55,7 @@ func (s *IncidentsService) Get(id string) (*Incident, *http.Response, error) {
 
 // IncidentsOptions provides optional parameters to list requests
 type IncidentsOptions struct {
+	Pagination
 	Status string `url:"status,omitempty"`
 	SortBy string `url:"sort_by,omitempty"`
 	Since  string `url:"since,omitempty"`
