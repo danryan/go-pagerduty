@@ -31,6 +31,7 @@ type Incident struct {
 
 // Incidents is a list of incidents
 type Incidents struct {
+	Pagination
 	Incidents []Incident
 }
 
