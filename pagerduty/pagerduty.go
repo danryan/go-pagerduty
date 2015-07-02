@@ -16,9 +16,9 @@ import (
 )
 
 type Pagination struct {
-	Limit     int         `json:"limit,omitempty",url:"limit,omitempty"`
-	Offset    int         `json:"offset",url:"offset,omitempty"`
-	Total     int         `json:"total",url:"-"`
+	Limit     int         `json:"limit,omitempty" url:"limit,omitempty"`
+	Offset    int         `json:"offset" url:"offset,omitempty"`
+	Total     int         `json:"total" url:"-"`
 }
 
 // Client is an API client
