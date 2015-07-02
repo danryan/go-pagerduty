@@ -62,17 +62,17 @@ type IncidentsOptions struct {
 
 // List returns a list of incidents
 func (s *IncidentsService) List(opt *IncidentsOptions) (Incidents, *http.Response, error) {
+	var incidents Incidents
 	u, err := addOptions("incidents", opt)
 	if err != nil {
-		return nil, nil, err
+		return incidents, nil, err
 	}
 
-	incidents := new(Incidents)
 
 	res, err := s.client.Get(u, incidents)
 	if err != nil {
-		return nil, res, err
+		return incidents, res, err
 	}
 
-	return incidents.Incidents, res, err
+	return incidents, res, err
 }

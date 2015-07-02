@@ -33,16 +33,16 @@ type AlertsOptions struct {
 
 // List returns a list of alerts
 func (s *AlertsService) List(opt *AlertsOptions) (Alerts, *http.Response, error) {
+	var alerts Alerts
+
 	u, err := addOptions("alerts", opt)
 	if err != nil {
-		return nil, nil, err
+		return alerts, nil, err
 	}
-
-	alerts := new(Alerts)
 
 	res, err := s.client.Get(u, alerts)
 	if err != nil {
-		return nil, res, err
+		return alerts, res, err
 	}
 
 	return alerts, res, err
