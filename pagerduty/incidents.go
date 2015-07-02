@@ -71,7 +71,7 @@ func (s *IncidentsService) List(opt *IncidentsOptions) (Incidents, *http.Respons
 	}
 
 
-	res, err := s.client.Get(u, incidents)
+	res, err := s.client.Get(u, &incidents)
 	if err != nil {
 		return incidents, res, err
 	}

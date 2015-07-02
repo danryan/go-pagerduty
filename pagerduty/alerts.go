@@ -40,7 +40,7 @@ func (s *AlertsService) List(opt *AlertsOptions) (Alerts, *http.Response, error)
 		return alerts, nil, err
 	}
 
-	res, err := s.client.Get(u, alerts)
+	res, err := s.client.Get(u, &alerts)
 	if err != nil {
 		return alerts, res, err
 	}
