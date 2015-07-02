@@ -32,7 +32,7 @@ type AlertsOptions struct {
 }
 
 // List returns a list of alerts
-func (s *AlertsService) List(opt *AlertsOptions) ([]Alert, *http.Response, error) {
+func (s *AlertsService) List(opt *AlertsOptions) (Alerts, *http.Response, error) {
 	u, err := addOptions("alerts", opt)
 	if err != nil {
 		return nil, nil, err
@@ -45,5 +45,5 @@ func (s *AlertsService) List(opt *AlertsOptions) ([]Alert, *http.Response, error
 		return nil, res, err
 	}
 
-	return alerts.Alerts, res, err
+	return alerts, res, err
 }

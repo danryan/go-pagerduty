@@ -61,7 +61,7 @@ type IncidentsOptions struct {
 }
 
 // List returns a list of incidents
-func (s *IncidentsService) List(opt *IncidentsOptions) ([]Incident, *http.Response, error) {
+func (s *IncidentsService) List(opt *IncidentsOptions) (Incidents, *http.Response, error) {
 	u, err := addOptions("incidents", opt)
 	if err != nil {
 		return nil, nil, err
