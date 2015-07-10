@@ -15,6 +15,12 @@ import (
 	"github.com/google/go-querystring/query"
 )
 
+type Pagination struct {
+	Limit     int         `json:"limit,omitempty" url:"limit,omitempty"`
+	Offset    int         `json:"offset" url:"offset,omitempty"`
+	Total     int         `json:"total" url:"-"`
+}
+
 // Client is an API client
 type Client struct {
 	client    *http.Client
@@ -23,8 +29,10 @@ type Client struct {
 	BaseURL   *url.URL
 
 	Incidents *IncidentsService
+	Alerts    *AlertsService
 	Users     *UsersService
 	Schedules *SchedulesService
+	LogEntries *LogEntriesService
 }
 
 // New returns a Client with the default http.Client
@@ -46,8 +54,10 @@ func NewClient(sub, key string, httpClient *http.Client) *Client {
 	}
 
 	client.Incidents = &IncidentsService{client: client}
+	client.Alerts = &AlertsService{client: client}
 	client.Users = &UsersService{client: client}
 	client.Schedules = &SchedulesService{client: client}
+	client.LogEntries = &LogEntriesService{client: client}
 
 	return client
 }

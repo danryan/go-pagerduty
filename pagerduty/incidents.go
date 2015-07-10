@@ -15,8 +15,8 @@ type Incident struct {
 	CreatedOn             string            `json:"created_on,omitempty"`
 	Summary               *IncidentSummary  `json:"trigger_summary_data,omitempty"`
 	User                  *User             `json:"assigned_to_user,omitempty"`
-	Service               *Service          `json:"service,omitempty"`
-	EscalationPolicy      *EscalationPolicy `json:"escalation_policy,omitempty"`
+	SService               *Service          `json:"service,omitempty"` // This is conflicting with the package name on assignment in test. Not sure of the soltuion
+	EEscalationPolicy      *EscalationPolicy `json:"escalation_policy,omitempty"` // This is conflicting with the package name on assignment in test. Not sure of the soltuion
 	HTMLURL               string            `json:"html_url,omitempty"`
 	IncidentKey           string            `json:"incident_key,omitempty"`
 	TriggerDetailsHTMLURL string            `json:"trigger_details_html_url,omitempty"`
@@ -31,6 +31,7 @@ type Incident struct {
 
 // Incidents is a list of incidents
 type Incidents struct {
+	Pagination
 	Incidents []Incident
 }
 
@@ -54,6 +55,7 @@ func (s *IncidentsService) Get(id string) (*Incident, *http.Response, error) {
 
 // IncidentsOptions provides optional parameters to list requests
 type IncidentsOptions struct {
+	Pagination
 	Status string `url:"status,omitempty"`
 	SortBy string `url:"sort_by,omitempty"`
 	Since  string `url:"since,omitempty"`
@@ -61,18 +63,18 @@ type IncidentsOptions struct {
 }
 
 // List returns a list of incidents
-func (s *IncidentsService) List(opt *IncidentsOptions) ([]Incident, *http.Response, error) {
+func (s *IncidentsService) List(opt *IncidentsOptions) (Incidents, *http.Response, error) {
+	var incidents Incidents
 	u, err := addOptions("incidents", opt)
 	if err != nil {
-		return nil, nil, err
+		return incidents, nil, err
 	}
 
-	incidents := new(Incidents)
 
-	res, err := s.client.Get(u, incidents)
+	res, err := s.client.Get(u, &incidents)
 	if err != nil {
-		return nil, res, err
+		return incidents, res, err
 	}
 
-	return incidents.Incidents, res, err
+	return incidents, res, err
 }

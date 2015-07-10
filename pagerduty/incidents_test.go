@@ -3,15 +3,15 @@ package pagerduty_test
 import (
 	"fmt"
 	"net/http"
-	"reflect"
 	"testing"
-
-	. "github.com/danryan/go-pagerduty/pagerduty"
+	. "."
 )
 
-func TestIncident_marshal(t *testing.T) {
+func TestIncident_empty_marshal(t *testing.T) {
 	testJSONMarshal(t, &Incident{}, "{}")
+}
 
+func TestIncident_sample_marshal(t *testing.T) {
 	t.SkipNow()
 	i := &Incident{
 		ID:             "ABCDEF",
@@ -20,25 +20,18 @@ func TestIncident_marshal(t *testing.T) {
 		CreatedOn:      "2014-08-25T19:11:30Z",
 		HTMLURL:        "https://example.pagerduty.com/incidents/ABCDEF",
 		IncidentKey:    "79574e08c4bdeaf9d1cdf1f059eba93",
-		Service: &Service{
+		SService: &Service{
 			ID:      "ABCDEF",
 			Name:    "Test",
 			HTMLURL: "https://example.pagerduty.com/services/ABCDEF",
 		},
-		EscalationPolicy: &EscalationPolicy{
+		EEscalationPolicy: &EscalationPolicy{
 			ID:   "ABCDEF",
 			Name: "Default",
 		},
 		AssignedToUser: nil,
 		AssignedTo:     make([]*User, 0),
 	}
-
-	// ID             string           `json:"id,omitempty"`
-	// Status         string           `json:"status,omitempty"`
-	// IncidentNumber int              `json:"incident_number,omitempty"`
-	// CreatedOn      string           `json:"created_on,omitempty"`
-	// Summary        *IncidentSummary `json:"trigger_summary_data,omitempty"`
-	// User           *User            `json:"assigned_to_user,omitempty"`
 
 	want := `{
 	  "id": "ABCDEF",
@@ -98,8 +91,10 @@ func TestIncidentsService_Get(t *testing.T) {
 		t.Errorf("Users.Get returned error: %v", err)
 	}
 
-	want := &User{ID: "ABCDEF"}
-	if !reflect.DeepEqual(user, want) {
-		t.Errorf("Users.Get returned %+v, want %%+v", user, want)
+	want := &User {
+		ID       : "ABCDEF",
+	}
+	if user.ID != want.ID {
+		t.Errorf("Users.Get returned:\n%+v\nWant: \n%+v\n", user, want)
 	}
 }
