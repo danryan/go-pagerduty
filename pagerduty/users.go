@@ -16,12 +16,15 @@ type User struct {
 	Name            string   `json:"name,omitempty"`
 	Email           string   `json:"email,omitempty"`
 	Role            string   `json:"role,omitempty"`
+	JobTitle        *string  `json:"job_title"`
+	Description     string   `json:"description"`
 	TimeZone        string   `json:"time_zone,omitempty"`
 	Color           string   `json:"color,omitempty"`
 	UserURL         string   `json:"user_url,omitempty"`
 	AvatarURL       string   `json:"avatar_url,omitempty"`
 	InvitationSent  bool 	 `json:"invitation_sent"`
 	MarketingOptOut bool     `json:"marketing_opt_out"`
+	Type 			string   `json:"type,omitempty"`
 }
 
 // Users is a list of users
