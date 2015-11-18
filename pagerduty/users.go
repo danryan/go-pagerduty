@@ -21,16 +21,20 @@ type User struct {
 	Color             string    `json:"color,omitempty"`
 	UserURL           string    `json:"user_url,omitempty"`
 	AvatarURL         string    `json:"avatar_url,omitempty"`
+	Description       string    `json:"description,omitempty"`
+	InvitationSent    bool      `json:"invitation_sent,omitempty"`
+	MarketingOptOut   bool      `json:"marketing_opt_out,omitempty"`
 	ContactMethods    []Contact `json:"contact_methods,omitempty"`
 	NotificationRules []Rules   `json:"notification_rules,omitempty"`
 }
 
 // Rules type
 type Rules struct {
-	ID             string    `json:"id,omitempty"`
-	Urgency        string    `json:"urgency,omitempty"`
-	ContactMethods []Contact `json:"contact_methods,omitempty"`
-	CreatedAt      string    `json:"created_at,omitempty"`
+	ID                  string    `json:"id,omitempty"`
+	Urgency             string    `json:"urgency,omitempty"`
+	StartDelayInMinutes int       `json:"start_delay_in_minutes,omitempty"`
+	CreatedAt           string    `json:"created_at,omitempty"`
+	ContactMethods      []Contact `json:"contact_methods,omitempty"`
 }
 
 // Sound type
