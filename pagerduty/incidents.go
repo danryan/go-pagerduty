@@ -27,6 +27,7 @@ type Incident struct {
 	ResolvedByUser        *User             `json:"resolved_by_user,omitempty"`
 	AssignedToUser        *User             `json:"assigned_to_user,omitempty"`
 	AssignedTo            []*User           `json:"assigned_to,omitempty"`
+	Urgency		      string		`json:"urgency,omitempty"`
 }
 
 // Incidents is a list of incidents
