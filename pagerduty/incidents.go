@@ -32,6 +32,9 @@ type Incident struct {
 // Incidents is a list of incidents
 type Incidents struct {
 	Incidents []Incident
+	Limit     int
+	Offset    int
+	Total     int
 }
 
 // IncidentSummary type
@@ -54,25 +57,33 @@ func (s *IncidentsService) Get(id string) (*Incident, *http.Response, error) {
 
 // IncidentsOptions provides optional parameters to list requests
 type IncidentsOptions struct {
-	Status string `url:"status,omitempty"`
-	SortBy string `url:"sort_by,omitempty"`
-	Since  string `url:"since,omitempty"`
-	Until  string `url:"until,omitempty"`
+	Status    string `url:"status,omitempty"`
+	SortBy    string `url:"sort_by,omitempty"`
+	Since     string `url:"since,omitempty"`
+	Until     string `url:"until,omitempty"`
+	Service   string `url:"service,omitempty"`
+	DateRange string `url:"date_range,omitempty"`
+	Offset    int    `url:"offset,omitempty"`
 }
 
 // List returns a list of incidents
-func (s *IncidentsService) List(opt *IncidentsOptions) ([]Incident, *http.Response, error) {
-	u, err := addOptions("incidents", opt)
-	if err != nil {
-		return nil, nil, err
+func (s *IncidentsService) List(opt *IncidentsOptions) ([]Incident, error) {
+	result := []Incident{}
+	for {
+		u, err := addOptions("incidents", opt)
+		if err != nil {
+			return nil, err
+		}
+		incidents := new(Incidents)
+		_, err = s.client.Get(u, incidents)
+		if err != nil {
+			return nil, err
+		}
+		result = append(result, incidents.Incidents...)
+		if incidents.Limit+incidents.Offset > incidents.Total {
+			break
+		}
+		opt.Offset += incidents.Limit
 	}
-
-	incidents := new(Incidents)
-
-	res, err := s.client.Get(u, incidents)
-	if err != nil {
-		return nil, res, err
-	}
-
-	return incidents.Incidents, res, err
+	return result, nil
 }
