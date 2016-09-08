@@ -123,3 +123,19 @@ func (s *SchedulesService) Entries(id string, opt *ScheduleEntriesOptions) (*Sch
 
 	return entries, res, err
 }
+
+// GetOnCall returns a list all the users on-call in a given schedule for a given time range.
+func (s *SchedulesService) GetOnCall(scheduleID string, opt *ScheduleEntriesOptions) (*Users, *http.Response, error) {
+	uri, err := addOptions("schedules/"+scheduleID+"/users", opt)
+	if err != nil {
+		return nil, nil, err
+	}
+	user := new(Users)
+
+	res, err := s.client.Get(uri, user)
+	if err != nil {
+		return nil, res, err
+	}
+
+	return user, res, nil
+}
