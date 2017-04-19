@@ -37,7 +37,7 @@ func NewClient(sub, key string, httpClient *http.Client) *Client {
 	if httpClient == nil {
 		httpClient = http.DefaultClient
 	}
-	u, _ := url.Parse(fmt.Sprintf("https://%s.pagerduty.com/api/v1/", sub))
+	u, _ := url.Parse("https://api.pagerduty.com/")
 	client := &Client{
 		client:    httpClient,
 		APIKey:    key,
@@ -97,7 +97,7 @@ func (c *Client) NewRequest(meth string, path string, input interface{}) (*http.
 	}
 
 	req.Header.Add("Authorization", `Token token=`+c.APIKey)
-	req.Header.Add("Accept", "application/json")
+	req.Header.Add("Accept", "application/vnd.pagerduty+json;version=2")
 	req.Header.Add("Content-Type", "application/json")
 
 	return req, nil

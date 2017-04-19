@@ -45,14 +45,18 @@ type IncidentSummary struct {
 
 // Get returns a single incident by id if found
 func (s *IncidentsService) Get(id string) (*Incident, *http.Response, error) {
-	incident := new(Incident)
+	// the response from pagerduty is wrapped under a top level
+	// "incident" key
+	temp := &struct {
+		Incident *Incident `json:"incident"`
+	}{}
 
-	res, err := s.client.Get("incidents/"+id, incident)
+	res, err := s.client.Get("incidents/"+id, temp)
 	if err != nil {
 		return nil, res, err
 	}
 
-	return incident, res, nil
+	return temp.Incident, res, nil
 }
 
 // IncidentsOptions provides optional parameters to list requests
