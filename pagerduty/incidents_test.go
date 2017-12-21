@@ -100,6 +100,6 @@ func TestIncidentsService_Get(t *testing.T) {
 
 	want := &User{ID: "ABCDEF"}
 	if !reflect.DeepEqual(user, want) {
-		t.Errorf("Users.Get returned %+v, want %%+v", user, want)
+		t.Errorf("Users.Get returned %+v, want %+v", user, want)
 	}
 }

@@ -15,7 +15,7 @@ type SchedulesService struct {
 // The ScheduleWrapper type is necessary because the GET /schedules/:id
 // API returns a nested json object in the form: {"schedule": {"id": ...}}
 type ScheduleWrapper struct {
-	Schedule *Schedule `json:schedule,omitempty"`
+	Schedule *Schedule `json:"schedule,omitempty"`
 }
 
 type Schedule struct {
@@ -105,7 +105,7 @@ type ScheduleEntries struct {
 type ScheduleEntry struct {
 	User  *User  `json:"user,omitempty"`
 	Start string `json:"start,omitempty"`
-	End   string `json:end,omitempty"`
+	End   string `json:"end,omitempty"`
 }
 
 // Entries returns a list of schedule entries for a schedule by id
