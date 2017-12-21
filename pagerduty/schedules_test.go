@@ -63,7 +63,7 @@ func TestSchedulesService_Get(t *testing.T) {
 
 	mux.HandleFunc("/schedules/s", func(w http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, "GET")
-		fmt.Fprint(w, `{"schedule": {"id": "ABCDEF"}}`)
+		fmt.Fprint(w, `{"schedule": {"id": "ABCDEF", "schedule_layers":[{"name":"Schedule Layer 1", "users":[{"member_order":1,"user":{"id":"GHIJK","name":"User Name"}}]}]}}`)
 	})
 
 	schedule, _, err := client.Schedules.Get("s")
@@ -71,7 +71,9 @@ func TestSchedulesService_Get(t *testing.T) {
 		t.Errorf("Schedules.Get returned error: %v", err)
 	}
 
-	want := &Schedule{ID: "ABCDEF"}
+	want := &Schedule{ID: "ABCDEF", ScheduleLayers: []*ScheduleLayer{
+		{Name: "Schedule Layer 1", Users: []*OrderedUser{{Order: 1, User: User{ID: "GHIJK", Name: "User Name"}}}},
+	}}
 	if !reflect.DeepEqual(schedule, want) {
 		t.Errorf("Schedules.Get returned %+v, want %%+v", schedule, want)
 	}

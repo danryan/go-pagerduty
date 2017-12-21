@@ -29,18 +29,23 @@ type Schedule struct {
 	FinalSchedule        *ScheduleLayer      `json:"final_schedule,omitempty"`
 }
 
+type OrderedUser struct {
+	Order int  `json:"member_order,omitempty"`
+	User  User `json:"user"`
+}
+
 type ScheduleLayer struct {
-	Name                       string   `json:"name,omitempty"`
-	RenderedScheduleEntries    []string `json:"rendered_schedule_entries,omitempty"`
-	RestrictionType            string   `json:"restriction_type,omitempty"`
-	Restrictions               []string `json:"restrictions,omitempty"`
-	Priority                   int      `json:"priority,omitempty"`
-	Start                      string   `json:"start,omitempty"`
-	End                        string   `json:"end,omitempty"`
-	RenderedCoveragePercentage int      `json:"rendered_coverage_percentage,omitempty"`
-	RotationTurnLengthSeconds  int      `json:"rotation_turn_length_seconds,omitempty"`
-	RotationVirtualStart       string   `json:"rotation_virtual_start,omitempty"`
-	Users                      []*User  `json:"users,omitempty"`
+	Name                       string         `json:"name,omitempty"`
+	RenderedScheduleEntries    []string       `json:"rendered_schedule_entries,omitempty"`
+	RestrictionType            string         `json:"restriction_type,omitempty"`
+	Restrictions               []string       `json:"restrictions,omitempty"`
+	Priority                   int            `json:"priority,omitempty"`
+	Start                      string         `json:"start,omitempty"`
+	End                        string         `json:"end,omitempty"`
+	RenderedCoveragePercentage int            `json:"rendered_coverage_percentage,omitempty"`
+	RotationTurnLengthSeconds  int            `json:"rotation_turn_length_seconds,omitempty"`
+	RotationVirtualStart       string         `json:"rotation_virtual_start,omitempty"`
+	Users                      []*OrderedUser `json:"users,omitempty"`
 }
 
 type Schedules struct {
